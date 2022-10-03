@@ -32,7 +32,10 @@
                   <label for="exampleInputPassword1">Confirm Password</label>
                   <input type="password" class="form-control" name="password_confirmation">
                 </div>
-                <button type="submit" class="btn btn-primary" name="submit">Submit</button>
+                <button type="submit" class="btn btn-success" name="submit">Submit</button>
+                <button type="button" class="btn btn-primary" name="login">
+                    <a href="{{route('loginShow')}}" class="text-light">Login</a>
+                </button>
               </form>
         </div>
     </div>

@@ -13,6 +13,9 @@
             <h2>
                 Phone Book
             </h2>
+            <button class="btn btn-danger" type="button">
+                <a href="{{route('logout')}}" class="text-light">Log Out</a>
+            </button>
             <div class="text-left p-5">
                 <div class="row">
 

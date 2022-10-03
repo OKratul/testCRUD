@@ -27,7 +27,10 @@
                   <input type="password" class="form-control" name="password">
                 </div>
 
-                <button type="submit" class="btn btn-primary" name="submit">login</button>
+                <button type="submit" class="btn btn-success" name="submit">login</button>
+                <button type="button" class="btn btn-primary" name="register">
+                    <a href="{{route('showRegister')}}" class="text-light">Register</a>
+                </button>
               </form>
         </div>
     </div>
