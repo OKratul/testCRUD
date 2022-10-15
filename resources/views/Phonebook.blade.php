@@ -6,7 +6,9 @@
             Phone Book
         </title>
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <link rel="stylesheet" href="{{asset('css/style.css')}}">
     </head>
+
 
     <body>
         <div class="container text-center">
@@ -14,7 +16,7 @@
                 Phone Book
             </h2>
             <button class="btn btn-danger" type="button">
-                <a href="{{route('logout')}}" class="text-light">Log Out</a>
+                <a href="{{route('logout')}}" class="text-light">{{Auth::user()->name}} | Log Out</a>
             </button>
             <div class="text-left p-5">
                 <div class="row">
@@ -24,13 +26,14 @@
                         @if(session('success'))
                             <li class="alert alert-success">{{session('success')}}</li>
                         @endif
-                        <form class="form-group" action="{{ route('createContact') }}" method="POST" >
+                        <form class="form-group" action="{{ route('createContact') }}" method="POST" enctype="multipart/form-data" >
 
                             {{ csrf_field() }}
 
                             <input type="name" name="name" class="form-control mt-3" placeholder="Your Name" />
                             <input type="email" name="email" class="form-control mt-3" placeholder="E-mail" />
                             <input type="number" name="contact" class="form-control mt-3" placeholder="Number" />
+                            <input type="file" name="cont_image" accept="image/*" class="form-control mt-3"  />
                             <button class="btn btn-info btn-block mt-3" name="submit" type="submit" >Submit</button>
                         </form>
                     </div>
@@ -40,6 +43,7 @@
                         <table class="table table-dark">
                             <thead>
                             <tr>
+                                <th scope="col">Image</th>
                                 <th scope="col">Name</th>
                                 <th scope="col">Email</th>
                                 <th scope="col">Number</th>
@@ -49,7 +53,10 @@
                             <tbody>
                             @forelse($contacts as $contact)
                                 <tr>
-                                    <td>{{$contact->Name}}</td>
+                                    <td>
+                                        <img src="{{asset('images/'.$contact->Image)}}" class="img-fluid rounded-circle contact-img" />
+                                    </td>
+                                    <td class="align-center">{{$contact->Name}}</td>
                                     <td>{{$contact->Email}}</td>
                                     <td>{{$contact->Number}}</td>
                                     <td>

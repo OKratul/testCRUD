@@ -18,6 +18,7 @@ return new class extends Migration
             $table->longText('Name');
             $table->string('Email');
             $table->string('Number');
+            $table->string('Image');
             $table->timestamps();
         });
     }

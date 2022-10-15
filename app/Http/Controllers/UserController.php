@@ -33,7 +33,7 @@ class UserController extends Controller
        $generatedUrl = route('verifyEmail',[$user->email,$code]);
        Mail::to($user->email)->send(new UserVerificatin($generatedUrl));
 
-        return 'Registered';
+        return redirect(route('loginShow'));
     }
 
     public function verifyUser($email,$code){

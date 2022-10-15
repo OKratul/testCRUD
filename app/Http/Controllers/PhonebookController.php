@@ -16,14 +16,21 @@ class PhonebookController extends Controller
     public function create(){
 
         $this->validate(request(),[
-           'name' => 'required|max:10',
+           'name' => 'required',
             'email'=> 'required|unique:phone_books,email',
             'contact' => 'required|min:6',
+            'cont_image'=>'required|image|max:6000',
         ]);
+
+        $imgExt = \request()->file('cont_image')->extension();
+        $imgName = "photo".uniqid()."_".time().'.'.$imgExt;
+        \request()->file('cont_image')->move('images',$imgName);
+
         PhoneBook::create ([
             'Name' => \request('name'),
             'Email' => \request('email'),
             'Number' => \request('contact'),
+            'Image' => $imgName,
         ]);
 
         return redirect()->back()->with('success','contact added');
